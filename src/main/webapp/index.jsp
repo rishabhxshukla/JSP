@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 
-<%!
-    int a = 10;
-    int b = 5;
-
-    int sum()
-    {
-        return a + b;
-    }
-%>
+<%--
+Implicit object:
+1. out
+2. request
+3. response
+4. config
+5. application
+6. page
+7. pageContext
+8. exception
+9. session
+--%>
 
 <html lang="en">
     <head>
-        <title>MyJSP App</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Implicit Object Page</title>
     </head>
 
     <body>
-        <!-- Including other file -->
-        <%@ include file="navbar.jsp" %>
-
-        <h1>Hello World!</h1>
-        <h3>Hello, <%= "Rishabh" %></h3>
-
-        <!-- Displaying -->
-        <p>A : <%= a %></p>
-        <p>B : <%= b %></p>
-        <p>Sum : <%= sum() %></p>
-
-        <!-- Executing -->
+        <h1>Implicit Object!</h1>
         <%
-            out.print("Multiplication : ");
-            int mul = a * b;
-            out.println(mul);
+            String name="Rishabh Shukla";
+            out.print("Name : " + name);
         %>
+        <br>
+        <%
+            session.setAttribute("session_name", "Adv Java Programming");
+            out.print("Session name : " + session);
+        %>
+
+        <br><br>
+
+        <form action="outer.jsp" method="get">
+            <input type="text" name="name1" placeholder="Enter your Name "/>
+            <br><br>
+            <input type="submit" value="Click Me!"/>
+        </form>
     </body>
 </html>
